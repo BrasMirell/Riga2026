@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="nl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riga Vriendenweekend 2026 - Draaiboek</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0f172a',
+              card: '#1e293b',
+              accent: '#f59e0b',
+              accentLight: '#fef3c7',
+              border: '#334155'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    /* Print / Afdrukstand styles */
+    body.printable-mode {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+    }
+    body.printable-mode .dark-card {
+      background-color: #f8fafc !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #0f172a !important;
+      box-shadow: none !important;
+    }
+    body.printable-mode .text-dark-toggle {
+      color: #0f172a !important;
+    }
+    body.printable-mode .text-muted-toggle {
+      color: #475569 !important;
+    }
+    body.printable-mode .no-printable {
+      display: none !important;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .dark-card {
+        background-color: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body id="app-body" class="min-h-screen pb-16">
+
+  <!-- TOP HEADER MET BEDIENING -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-4 py-3">
+    <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></span>
+        <span class="font-extrabold text-base text-slate-100">Riga 2026 Draaiboek</span>
+      </div>
+      
+      <!-- ACTIEKNOPPEN -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="shareWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-md">
+          <i class="fa-brands fa-whatsapp text-base"></i> Deel in WhatsApp
+        </button>
+        <button onclick="copyScheduleText()" class="bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 font-bold text-xs sm:text-sm px-3 py-2 rounded-lg transition-all flex items-center gap-1.5">
+          <i class="fa-regular fa-copy"></i> Kopieer Tekst
+        </button>
+        <button onclick="togglePrintMode()" id="print-toggle-btn" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-md">
+          <i class="fa-solid fa-print"></i> Printweergave
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MELDING TOAST -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-amber-500 text-slate-950 px-4 py-3 rounded-xl font-bold text-sm shadow-2xl flex items-center gap-2">
+    <i class="fa-solid fa-check-circle text-lg"></i>
+    <span id="toast-msg">Tekst gekopieerd!</span>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <main class="max-w-4xl mx-auto px-4 pt-6 space-y-8">
+
+    <!-- HERO HEADER CARD -->
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-amber-950/40 border border-slate-700/80 p-6 sm:p-8 shadow-2xl dark-card">
+      <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+        <i class="fa-solid fa-plane-departure text-9xl text-amber-500"></i>
+      </div>
+      
+      <div class="relative z-10 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold text-xs uppercase tracking-wider">
+          <i class="fa-solid fa-users"></i> 10 Vrienden • Officieel Reisschema
+        </div>
+        
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white text-dark-toggle">
+          Riga Vriendenweekend <span class="text-amber-500">2026</span>
+        </h1>
+        
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl text-muted-toggle">
+          11 t/m 13 September • Verblijf in het <strong class="text-amber-400">Old Rixwell Hotel</strong> • Bobslee, Forest Quads, Craft Beer & Steaks.
+        </p>
+
+        <!-- SNELLE INFO BADGES -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+          <div class="bg-slate-800/80 border border-slate-700 p-3 rounded-xl dark-card">
+            <span class="block text-xs text-slate-400 text-muted-toggle"><i class="fa-solid fa-calendar text-amber-400 mr-1"></i> Datum</span>
+            <span class="font-bold text-sm sm:text-base text-slate-100 text-dark-toggle">11 - 13 Sept</span>
+          </div>
+          <div class="bg-slate-800/80 border border-slate-700 p-3 rounded-xl dark-card">
+            <span class="block text-xs text-slate-400 text-muted-toggle"><i class="fa-solid fa-hotel text-amber-400 mr-1"></i> Hotel</span>
+            <span class="font-bold text-sm sm:text-base text-slate-100 text-dark-toggle">Old Rixwell</span>
+          </div>
+          <div class="bg-slate-800/80 border border-slate-700 p-3 rounded-xl dark-card">
+            <span class="block text-xs text-slate-400 text-muted-toggle"><i class="fa-solid fa-user-group text-amber-400 mr-1"></i> Groep</span>
+            <span class="font-bold text-sm sm:text-base text-amber-400">10 Personen</span>
+          </div>
+          <div class="bg-slate-800/80 border border-slate-700 p-3 rounded-xl dark-card">
+            <span class="block text-xs text-slate-400 text-muted-toggle"><i class="fa-solid fa-wallet text-amber-400 mr-1"></i> Totaal Budget</span>
+            <span class="font-bold text-sm sm:text-base text-amber-400">€ 335,- p.p.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUDGET OVERZICHT CARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 space-y-1 dark-card">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 text-muted-toggle">Vrijdag Budget</span>
+          <i class="fa-solid fa-beer-mug-empty text-amber-400"></i>
+        </div>
+        <div class="text-2xl font-extrabold text-amber-400">€ 110 <span class="text-xs font-normal text-slate-400">p.p.</span></div>
+        <p class="text-xs text-slate-300 text-muted-toggle">Armory (€20), Rock Cafe (€20), Rozengrals (€40), Ala Pagrabs (€30)</p>
+      </div>
+
+      <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 space-y-1 dark-card">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 text-muted-toggle">Zaterdag Budget</span>
+          <i class="fa-solid fa-gauge-high text-amber-400"></i>
+        </div>
+        <div class="text-2xl font-extrabold text-amber-400">€ 225 <span class="text-xs font-normal text-slate-400">p.p.</span></div>
+        <p class="text-xs text-slate-300 text-muted-toggle">Bobslee (€30), Lunch (€15), Quads (€60), Labietis (€30), Steaks (€50), Tallinas (€20), Skyline (€20)</p>
+      </div>
+
+      <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 space-y-1 dark-card">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 text-muted-toggle">Totaal Budget</span>
+          <i class="fa-solid fa-vault text-amber-400"></i>
+        </div>
+        <div class="text-2xl font-extrabold text-white text-dark-toggle">€ 335 <span class="text-xs font-normal text-slate-400">p.p.</span></div>
+        <p class="text-xs text-slate-300 text-muted-toggle">Exclusief vluchten, hotel & Bolt taxi's</p>
+      </div>
+    </div>
+
+    <!-- FILTER TABS (NO PRINT) -->
+    <div class="no-print flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+      <button onclick="filterDay('all')" id="tab-all" class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-amber-500 text-slate-950 transition-all shadow">
+        Alles Bekijken
+      </button>
+      <button onclick="filterDay('vrijdag')" id="tab-vrijdag" class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">
+        Vrijdag (11 Sept)
+      </button>
+      <button onclick="filterDay('zaterdag')" id="tab-zaterdag" class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">
+        Zaterdag (12 Sept)
+      </button>
+      <button onclick="filterDay('zondag')" id="tab-zondag" class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">
+        Zondag (13 Sept)
+      </button>
+    </div>
+
+    <!-- DAG 1: VRIJDAG -->
+    <section id="day-vrijdag" class="day-section space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold">
+            01
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-white text-dark-toggle">Vrijdag 11 September</h2>
+            <p class="text-xs text-slate-400 text-muted-toggle">Heenreis, Inchecken & Borrelen in de Binnenstad</p>
+          </div>
+        </div>
+        <span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold text-xs">€110 p.p.</span>
+      </div>
+
+      <div class="space-y-3">
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">07:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Ochtend</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-car-side text-amber-400 mr-2"></i> Vertrek</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Verzamelen met de complete groep van 10 man en op weg richting Schiphol.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">08:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Schiphol</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-plane-arrival text-amber-400 mr-2"></i> Aankomst Schiphol</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Bagage droppen, door de security en tijd voor de eerste groepsfoto en koffie/bier op Schiphol Plaza.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">10:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Vlucht</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-plane text-amber-400 mr-2"></i> Vliegen naar Letland</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Boarding en vertrek van de vlucht richting Riga.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">13:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Aankomst</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-location-dot text-amber-400 mr-2"></i> Landen in Riga & Bolt Transfer</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Aankomst op Riga Airport (RIX). Buiten verzamelen en met Bolt-taxi's naar de binnenstad.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">14:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Hotel</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-hotel text-amber-400 mr-2"></i> Inchecken Old Rixwell Hotel & Terras</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Inchecken in de historische binnenstad, tassen droppen en meteen een terrasje pakken.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">16:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Borrel</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-shield-halved text-amber-400 mr-2"></i> Armory Bar</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Stoere bar in defensiestijl vol met wapens aan de muur, speciaalbieren en whisky's.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">18:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Muziek</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-guitar text-amber-400 mr-2"></i> Rock Cafe Riga</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Binnenwippen bij het iconische Latvian Rock Café voor livemuziek, drankjes en sfeer.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">19:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Diner</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-drumstick-bite text-amber-400 mr-2"></i> Middeleeuws Diner bij Rozengrals</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">40€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Dineren bij louter kaarslicht in een 13e-eeuwse kelder gewelf met grote schalen vlees en pullen speciaalbier.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">21:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Nachtleven</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-beer-mug-empty text-amber-400 mr-2"></i> Folkklubs Ala Pagrabs</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">De avond vervolgen in de gezelligste en grootste ondergrondse bierkelder van Riga met livemuziek.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAG 2: ZATERDAG -->
+    <section id="day-zaterdag" class="day-section space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold">
+            02
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-white text-dark-toggle">Zaterdag 12 September</h2>
+            <p class="text-xs text-slate-400 text-muted-toggle">Adrenaline in Sigulda, Quads, Steaks & Rooftop Bar</p>
+          </div>
+        </div>
+        <span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold text-xs">€225 p.p.</span>
+      </div>
+
+      <div class="space-y-3">
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">08:30</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Ontbijt</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-mug-hot text-amber-400 mr-2"></i> Groepsontbijt</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Stevige bodem leggen in het hotel of centrum om op te laden voor de actie.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">09:30</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Reis</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-tree text-amber-400 mr-2"></i> Vertrek naar Sigulda</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Met de trein of Bolt taxi's naar Gauja Nationaal Park (ca. 50 min. rijden).</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">11:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Aankomst</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-location-crosshairs text-amber-400 mr-2"></i> Aankomst in Sigulda</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Aankomst op de outdoorlocatie in Sigulda.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">11:30</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Actie</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-bolt text-amber-400 mr-2"></i> De Olympische Bobsleebaan</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Met 80–90 km/u in een echte bobslee op wielen over de officiële betonnen wedstrijdbaan racen!</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">13:30</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Lunch</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-burger text-amber-400 mr-2"></i> Groepslunch</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">15€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Snel een burger of lokale maaltijd scoren in Sigulda.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">14:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Offroad</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-gauge-high text-amber-400 mr-2"></i> Forest Quad Tour</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">60€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Met quads keihard door de bossen en modderpaden van Sigulda crossen.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">15:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Relax</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-shower text-amber-400 mr-2"></i> Terugreis naar Riga & Opfrissen</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Terug naar Riga, douchen en omkleden in het Old Rixwell Hotel.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">17:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Proeverij</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-flask text-amber-400 mr-2"></i> Labietis Craft Beer Proeverij</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Bierproeverij bij de bekendste microbrouwerij van Letland met unieke <em>beer flights</em>.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">19:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Steaks</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-utensils text-amber-400 mr-2"></i> Chef's Corner Steakhouse</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">50€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Topkwaliteit gerijpt rundvlees & steaks in een stoer en modern steakhouse.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">21:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Hipster</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-icons text-amber-400 mr-2"></i> Tallinas Kvartāls</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Indrinken op dit hippe, creatieve fabrieksterrein vol street art, foodtrucks en barren.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">22:00</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Rooftop</span>
+          </div>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-martini-glass-citrus text-amber-400 mr-2"></i> Skyline Rooftop Bar</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+            </div>
+            <p class="text-xs text-slate-300 text-muted-toggle">Afsluiten op de 26e verdieping met een 360° uitzicht over de stad, dikke beats & cocktails.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAG 3: ZONDAG -->
+    <section id="day-zondag" class="day-section space-y-4">
+      <div class="flex items-center gap-3 border-b border-slate-800 pb-2">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold">
+          03
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-white text-dark-toggle">Zondag 13 September</h2>
+          <p class="text-xs text-slate-400 text-muted-toggle">Terugreis naar Nederland</p>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">08:30</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Ontbijt</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-coffee text-amber-400 mr-2"></i> Ontbijt & Check-out</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Rustig wakker worden, koffers pakken en uitchecken bij Old Rixwell Hotel.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">09:30</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Taxi</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-taxi text-amber-400 mr-2"></i> Vertrek naar Airport</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Met de Bolt taxi's richting Riga Airport.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">11:50</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Vlucht</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-plane-departure text-amber-400 mr-2"></i> Vliegtuig Vertrekt</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Terugvlucht naar Nederland.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">13:10</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Landen</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-house-flag text-amber-400 mr-2"></i> Landen op Schiphol</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Aankomst op Schiphol & koffers ophalen.</p>
+          </div>
+        </div>
+
+        <div class="event-card flex gap-3 bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 dark-card">
+          <input type="checkbox" onclick="toggleCheck(this)" class="no-printable mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+          <div class="w-16 flex-shrink-0 text-center border-r border-slate-700/80 pr-3 my-auto">
+            <span class="block text-sm font-extrabold text-amber-400">14:30</span>
+            <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Thuis</span>
+          </div>
+          <div class="space-y-1 my-auto">
+            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-couch text-amber-400 mr-2"></i> Thuis op de Bank</h3>
+            <p class="text-xs text-slate-300 text-muted-toggle">Iedereen weer veilig thuis op de bank om uit te rusten.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Dag-filter logica
+    function filterDay(day) {
+      const sections = ['vrijdag', 'zaterdag', 'zondag'];
+      const tabs = ['all', 'vrijdag', 'zaterdag', 'zondag'];
+
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        if (btn) {
+          if (t === day) {
+            btn.className = 'tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-amber-500 text-slate-950 transition-all shadow';
+          } else {
+            btn.className = 'tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all';
+          }
+        }
+      });
+
+      sections.forEach(s => {
+        const sec = document.getElementById('day-' + s);
+        if (sec) {
+          if (day === 'all' || day === s) {
+            sec.style.display = 'block';
+          } else {
+            sec.style.display = 'none';
+          }
+        }
+      });
+    }
+
+    // Toggle Checkboxes visueel effect
+    function toggleCheck(checkbox) {
+      const card = checkbox.closest('.event-card');
+      if (checkbox.checked) {
+        card.style.opacity = '0.5';
+      } else {
+        card.style.opacity = '1';
+      }
+    }
+
+    // Toggle Print/Afdrukweergave
+    function togglePrintMode() {
+      const body = document.getElementById('app-body');
+      const btn = document.getElementById('print-toggle-btn');
+      body.classList.toggle('printable-mode');
+      
+      if (body.classList.contains('printable-mode')) {
+        btn.innerHTML = '<i class="fa-solid fa-moon"></i> Donkere Modus';
+        showToast('Scherm ingesteld op Printvriendelijke Modus!');
+      } else {
+        btn.innerHTML = '<i class="fa-solid fa-print"></i> Printweergave';
+        showToast('Terug naar Donkere Modus!');
+      }
+    }
+
+    // Toast Melding
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      toastMsg.innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    // Kopieer tekst voor WhatsApp
+    function copyScheduleText() {
+      const textToCopy = `✈️ RIGA VRIENDENWEEKEND 2026\n11 t/m 13 September | 10 Personen | Hotel: Old Rixwell Hotel\n\n💰 BUDGET OVERZICHT:\n- Vrijdag: €110 p.p.\n- Zaterdag: €225 p.p.\n- Totaal Gereserveerd: €335 p.p.\n\n📅 VRIJDAG 11 SEPT (€110 p.p.)\n• 07:00 Vertrek naar Schiphol\n• 08:00 Aankomst Schiphol\n• 10:00 Vliegen naar Letland\n• 13:00 Landen in Riga & Bolt Taxi\n• 14:00 Inchecken Old Rixwell Hotel & Terras\n• 16:00 Armory Bar (20€)\n• 18:00 Rock Cafe Riga (20€)\n• 19:00 Middeleeuws Diner bij Rozengrals (40€)\n• 21:00 Folkklubs Ala Pagrabs (30€)\n\n📅 ZATERDAG 12 SEPT (€225 p.p.)\n• 08:30 Groepsontbijt\n• 09:30 Vertrek naar Sigulda\n• 11:00 Aankomst in Sigulda\n• 11:30 De Olympische Bobsleebaan (30€)\n• 13:30 Groepslunch (15€)\n• 14:00 Forest Quad Tour (60€)\n• 15:00 Terugreis naar Riga & Opfrissen\n• 17:00 Labietis Craft Beer Proeverij (30€)\n• 19:00 Chef's Corner Steakhouse (50€)\n• 21:00 Tallinas Kvartāls (20€)\n• 22:00 Skyline Rooftop Bar (20€)\n\n📅 ZONDAG 13 SEPT\n• 08:30 Ontbijt & Check-out\n• 09:30 Vertrek naar Airport\n• 11:50 Vliegtuig Vertrekt\n• 13:10 Landen op Schiphol\n• 14:30 Thuis op de Bank`;
+
+      const tempInput = document.createElement('textarea');
+      tempInput.value = textToCopy;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      showToast('Programma gekopieerd naar klembord!');
+    }
+
+    // Directe WhatsApp-deellink
+    function shareWhatsApp() {
+      const text = encodeURIComponent(`✈️ RIGA VRIENDENWEEKEND 2026\n11 t/m 13 September | 10 Personen | Hotel: Old Rixwell Hotel\n\n💰 BUDGET OVERZICHT:\n- Vrijdag: €110 p.p.\n- Zaterdag: €225 p.p.\n- Totaal Gereserveerd: €335 p.p.\n\n📅 VRIJDAG 11 SEPT (€110 p.p.)\n• 07:00 Vertrek\n• 08:00 Schiphol\n• 10:00 Vliegen\n• 13:00 Landen Riga\n• 14:00 Inchecken & Terras\n• 16:00 Armory Bar (20€)\n• 18:00 Rock Cafe Riga (20€)\n• 19:00 Rozengrals Diner (40€)\n• 21:00 Ala Pagrabs (30€)\n\n📅 ZATERDAG 12 SEPT (€225 p.p.)\n• 08:30 Ontbijt\n• 09:30 Naar Sigulda\n• 11:00 Aankomst Sigulda\n• 11:30 Bobslee (30€)\n• 13:30 Lunch (15€)\n• 14:00 Forest Quad Tour (60€)\n• 15:00 Terugreis\n• 17:00 Labietis Bierproeverij (30€)\n• 19:00 Chef's Corner Steakhouse (50€)\n• 21:00 Tallinas Kvartāls (20€)\n• 22:00 Skyline Rooftop Bar (20€)\n\n📅 ZONDAG 13 SEPT\n• 08:30 Ontbijt\n• 09:30 Naar Airport\n• 11:50 Vlucht\n• 13:10 Schiphol\n• 14:30 Thuis`);
+      window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+    }
+  </script>
+</body>
+</html>
