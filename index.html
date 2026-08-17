@@ -35,7 +35,7 @@
       transition: background-color 0.3s, color 0.3s;
     }
     
-    /* Print / Afdrukstand styles */
+    /* Print / Afdrukstand stijlen */
     body.printable-mode {
       background-color: #ffffff !important;
       color: #0f172a !important;
@@ -74,7 +74,7 @@
 </head>
 <body id="app-body" class="min-h-screen pb-16">
 
-  <!-- TOP HEADER MET BEDIENING -->
+  <!-- NAVIGATION BAR -->
   <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-4 py-3">
     <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center gap-2">
@@ -82,7 +82,7 @@
         <span class="font-extrabold text-base text-slate-100">Riga 2026 Draaiboek</span>
       </div>
       
-      <!-- ACTIEKNOPPEN -->
+      <!-- ACTION BUTTONS -->
       <div class="flex flex-wrap items-center gap-2">
         <button onclick="shareWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-md">
           <i class="fa-brands fa-whatsapp text-base"></i> Deel in WhatsApp
@@ -97,13 +97,13 @@
     </div>
   </header>
 
-  <!-- MELDING TOAST -->
+  <!-- TOAST NOTIFICATION -->
   <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-amber-500 text-slate-950 px-4 py-3 rounded-xl font-bold text-sm shadow-2xl flex items-center gap-2">
     <i class="fa-solid fa-check-circle text-lg"></i>
     <span id="toast-msg">Tekst gekopieerd!</span>
   </div>
 
-  <!-- MAIN WRAPPER -->
+  <!-- MAIN CONTAINER -->
   <main class="max-w-4xl mx-auto px-4 pt-6 space-y-8">
 
     <!-- HERO HEADER CARD -->
@@ -125,7 +125,7 @@
           11 t/m 13 September • Verblijf in het <strong class="text-amber-400">Old Rixwell Hotel</strong> • Bobslee, Forest Quads, Craft Beer & Steaks.
         </p>
 
-        <!-- SNELLE INFO BADGES -->
+        <!-- QUICK BADGES -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
           <div class="bg-slate-800/80 border border-slate-700 p-3 rounded-xl dark-card">
             <span class="block text-xs text-slate-400 text-muted-toggle"><i class="fa-solid fa-calendar text-amber-400 mr-1"></i> Datum</span>
@@ -147,7 +147,7 @@
       </div>
     </div>
 
-    <!-- BUDGET OVERZICHT CARDS -->
+    <!-- BUDGET OVERZICHT -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 space-y-1 dark-card">
         <div class="flex items-center justify-between">
@@ -177,7 +177,7 @@
       </div>
     </div>
 
-    <!-- FILTER TABS (NO PRINT) -->
+    <!-- FILTER TABS -->
     <div class="no-print flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
       <button onclick="filterDay('all')" id="tab-all" class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-amber-500 text-slate-950 transition-all shadow">
         Alles Bekijken
@@ -215,7 +215,7 @@
             <span class="block text-sm font-extrabold text-amber-400">07:00</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Ochtend</span>
           </div>
-          <div class="space-y-1 my-auto">
+          <div class="space-y-1 my-auto flex-1">
             <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-car-side text-amber-400 mr-2"></i> Vertrek</h3>
             <p class="text-xs text-slate-300 text-muted-toggle">Verzamelen met de complete groep van 10 man en op weg richting Schiphol.</p>
           </div>
@@ -227,8 +227,13 @@
             <span class="block text-sm font-extrabold text-amber-400">08:00</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Schiphol</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-plane-arrival text-amber-400 mr-2"></i> Aankomst Schiphol</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-plane-arrival text-amber-400 mr-2"></i> Aankomst Schiphol</h3>
+              <a href="https://maps.google.com/?q=Amsterdam+Airport+Schiphol" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Bagage droppen, door de security en tijd voor de eerste groepsfoto en koffie/bier op Schiphol Plaza.</p>
           </div>
         </div>
@@ -239,7 +244,7 @@
             <span class="block text-sm font-extrabold text-amber-400">10:00</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Vlucht</span>
           </div>
-          <div class="space-y-1 my-auto">
+          <div class="space-y-1 my-auto flex-1">
             <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-plane text-amber-400 mr-2"></i> Vliegen naar Letland</h3>
             <p class="text-xs text-slate-300 text-muted-toggle">Boarding en vertrek van de vlucht richting Riga.</p>
           </div>
@@ -251,8 +256,13 @@
             <span class="block text-sm font-extrabold text-amber-400">13:00</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Aankomst</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-location-dot text-amber-400 mr-2"></i> Landen in Riga & Bolt Transfer</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-location-dot text-amber-400 mr-2"></i> Landen in Riga & Bolt Transfer</h3>
+              <a href="https://maps.google.com/?q=Riga+International+Airport+RIX" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Aankomst op Riga Airport (RIX). Buiten verzamelen en met Bolt-taxi's naar de binnenstad.</p>
           </div>
         </div>
@@ -263,8 +273,13 @@
             <span class="block text-sm font-extrabold text-amber-400">14:00</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Hotel</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-hotel text-amber-400 mr-2"></i> Inchecken Old Rixwell Hotel & Terras</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-hotel text-amber-400 mr-2"></i> Inchecken Old Rixwell Hotel & Terras</h3>
+              <a href="https://maps.google.com/?q=Rixwell+Old+Riga+Palace+Hotel" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Inchecken in de historische binnenstad, tassen droppen en meteen een terrasje pakken.</p>
           </div>
         </div>
@@ -276,9 +291,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Borrel</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-shield-halved text-amber-400 mr-2"></i> Armory Bar</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+                <a href="https://maps.google.com/?q=Armory+Bar+Riga" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Stoere bar in defensiestijl vol met wapens aan de muur, speciaalbieren en whisky's.</p>
           </div>
@@ -291,9 +311,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Muziek</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-guitar text-amber-400 mr-2"></i> Rock Cafe Riga</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+                <a href="https://maps.google.com/?q=Latvian+1st+Rock+Cafe+Riga" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Binnenwippen bij het iconische Latvian Rock Café voor livemuziek, drankjes en sfeer.</p>
           </div>
@@ -306,9 +331,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Diner</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-drumstick-bite text-amber-400 mr-2"></i> Middeleeuws Diner bij Rozengrals</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">40€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">40€</span>
+                <a href="https://maps.google.com/?q=Rozengrals+Riga" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Dineren bij louter kaarslicht in een 13e-eeuwse kelder gewelf met grote schalen vlees en pullen speciaalbier.</p>
           </div>
@@ -321,9 +351,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Nachtleven</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-beer-mug-empty text-amber-400 mr-2"></i> Folkklubs Ala Pagrabs</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+                <a href="https://maps.google.com/?q=Folkklubs+Ala+Pagrabs+Riga" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">De avond vervolgen in de gezelligste en grootste ondergrondse bierkelder van Riga met livemuziek.</p>
           </div>
@@ -353,7 +388,7 @@
             <span class="block text-sm font-extrabold text-amber-400">08:30</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Ontbijt</span>
           </div>
-          <div class="space-y-1 my-auto">
+          <div class="space-y-1 my-auto flex-1">
             <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-mug-hot text-amber-400 mr-2"></i> Groepsontbijt</h3>
             <p class="text-xs text-slate-300 text-muted-toggle">Stevige bodem leggen in het hotel of centrum om op te laden voor de actie.</p>
           </div>
@@ -365,8 +400,13 @@
             <span class="block text-sm font-extrabold text-amber-400">09:30</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Reis</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-tree text-amber-400 mr-2"></i> Vertrek naar Sigulda</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-tree text-amber-400 mr-2"></i> Vertrek naar Sigulda</h3>
+              <a href="https://maps.google.com/?q=Sigulda+Latvia" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Met de trein of Bolt taxi's naar Gauja Nationaal Park (ca. 50 min. rijden).</p>
           </div>
         </div>
@@ -377,8 +417,13 @@
             <span class="block text-sm font-extrabold text-amber-400">11:00</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Aankomst</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-location-crosshairs text-amber-400 mr-2"></i> Aankomst in Sigulda</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-location-crosshairs text-amber-400 mr-2"></i> Aankomst in Sigulda</h3>
+              <a href="https://maps.google.com/?q=Sigulda+Bobsleigh+Track" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Aankomst op de outdoorlocatie in Sigulda.</p>
           </div>
         </div>
@@ -390,9 +435,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Actie</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-bolt text-amber-400 mr-2"></i> De Olympische Bobsleebaan</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+                <a href="https://maps.google.com/?q=Sigulda+bobsleigh+and+luge+track" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Met 80–90 km/u in een echte bobslee op wielen over de officiële betonnen wedstrijdbaan racen!</p>
           </div>
@@ -405,9 +455,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Lunch</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-burger text-amber-400 mr-2"></i> Groepslunch</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">15€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">15€</span>
+                <a href="https://maps.google.com/?q=Restaurants+in+Sigulda" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Snel een burger of lokale maaltijd scoren in Sigulda.</p>
           </div>
@@ -420,9 +475,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Offroad</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-gauge-high text-amber-400 mr-2"></i> Forest Quad Tour</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">60€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">60€</span>
+                <a href="https://maps.google.com/?q=Quad+safari+Sigulda" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Met quads keihard door de bossen en modderpaden van Sigulda crossen.</p>
           </div>
@@ -434,8 +494,13 @@
             <span class="block text-sm font-extrabold text-amber-400">15:00</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Relax</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-shower text-amber-400 mr-2"></i> Terugreis naar Riga & Opfrissen</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-shower text-amber-400 mr-2"></i> Terugreis naar Riga & Opfrissen</h3>
+              <a href="https://maps.google.com/?q=Rixwell+Old+Riga+Palace+Hotel" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Terug naar Riga, douchen en omkleden in het Old Rixwell Hotel.</p>
           </div>
         </div>
@@ -447,9 +512,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Proeverij</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-flask text-amber-400 mr-2"></i> Labietis Craft Beer Proeverij</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">30€</span>
+                <a href="https://maps.google.com/?q=Labietis+Riga" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Bierproeverij bij de bekendste microbrouwerij van Letland met unieke <em>beer flights</em>.</p>
           </div>
@@ -462,9 +532,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Steaks</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-utensils text-amber-400 mr-2"></i> Chef's Corner Steakhouse</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">50€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">50€</span>
+                <a href="https://maps.google.com/?q=Chefs+Corner+Riga" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Topkwaliteit gerijpt rundvlees & steaks in een stoer en modern steakhouse.</p>
           </div>
@@ -477,9 +552,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Hipster</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-icons text-amber-400 mr-2"></i> Tallinas Kvartāls</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+                <a href="https://maps.google.com/?q=Tallinas+Kvartals+Riga" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Indrinken op dit hippe, creatieve fabrieksterrein vol street art, foodtrucks en barren.</p>
           </div>
@@ -492,9 +572,14 @@
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Rooftop</span>
           </div>
           <div class="space-y-1 my-auto flex-1">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-2">
               <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-martini-glass-citrus text-amber-400 mr-2"></i> Skyline Rooftop Bar</h3>
-              <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300">20€</span>
+                <a href="https://maps.google.com/?q=Skyline+Bar+Radisson+Blu+Riga" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+              </div>
             </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Afsluiten op de 26e verdieping met een 360° uitzicht over de stad, dikke beats & cocktails.</p>
           </div>
@@ -521,8 +606,13 @@
             <span class="block text-sm font-extrabold text-amber-400">08:30</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Ontbijt</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-coffee text-amber-400 mr-2"></i> Ontbijt & Check-out</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-coffee text-amber-400 mr-2"></i> Ontbijt & Check-out</h3>
+              <a href="https://maps.google.com/?q=Rixwell+Old+Riga+Palace+Hotel" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Rustig wakker worden, koffers pakken en uitchecken bij Old Rixwell Hotel.</p>
           </div>
         </div>
@@ -533,8 +623,13 @@
             <span class="block text-sm font-extrabold text-amber-400">09:30</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Taxi</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-taxi text-amber-400 mr-2"></i> Vertrek naar Airport</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-taxi text-amber-400 mr-2"></i> Vertrek naar Airport</h3>
+              <a href="https://maps.google.com/?q=Riga+International+Airport+RIX" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Met de Bolt taxi's richting Riga Airport.</p>
           </div>
         </div>
@@ -545,7 +640,7 @@
             <span class="block text-sm font-extrabold text-amber-400">11:50</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Vlucht</span>
           </div>
-          <div class="space-y-1 my-auto">
+          <div class="space-y-1 my-auto flex-1">
             <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-plane-departure text-amber-400 mr-2"></i> Vliegtuig Vertrekt</h3>
             <p class="text-xs text-slate-300 text-muted-toggle">Terugvlucht naar Nederland.</p>
           </div>
@@ -557,8 +652,13 @@
             <span class="block text-sm font-extrabold text-amber-400">13:10</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Landen</span>
           </div>
-          <div class="space-y-1 my-auto">
-            <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-house-flag text-amber-400 mr-2"></i> Landen op Schiphol</h3>
+          <div class="space-y-1 my-auto flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-house-flag text-amber-400 mr-2"></i> Landen op Schiphol</h3>
+              <a href="https://maps.google.com/?q=Amsterdam+Airport+Schiphol" target="_blank" class="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+              </a>
+            </div>
             <p class="text-xs text-slate-300 text-muted-toggle">Aankomst op Schiphol & koffers ophalen.</p>
           </div>
         </div>
@@ -569,7 +669,7 @@
             <span class="block text-sm font-extrabold text-amber-400">14:30</span>
             <span class="text-[10px] text-slate-400 uppercase text-muted-toggle">Thuis</span>
           </div>
-          <div class="space-y-1 my-auto">
+          <div class="space-y-1 my-auto flex-1">
             <h3 class="font-bold text-white text-sm sm:text-base text-dark-toggle"><i class="fa-solid fa-couch text-amber-400 mr-2"></i> Thuis op de Bank</h3>
             <p class="text-xs text-slate-300 text-muted-toggle">Iedereen weer veilig thuis op de bank om uit te rusten.</p>
           </div>
